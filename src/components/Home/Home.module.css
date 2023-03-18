@@ -5,15 +5,11 @@
    
 }
 
-
-.navBar{
-    background-color: aquamarine;
-    padding: 8px;
-    margin: 15px;
-}
-
-.top{
-    background-color: rgb(81, 179, 146);
-    padding: 8px;
-    margin: 15px;
+.btnContenedor{
+    display: flex;
+    gap: 2px;
+    flex-direction: column;
+    align-content: space-around;
+    flex-wrap: wrap;
+    align-items: stretch;
 }

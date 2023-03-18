@@ -29,7 +29,7 @@
     },
     {
       "name": "converse",
-      "price": 15000,
+      "price": 6000,
       "stock": 30,
       "description": "zapas urbanas ",
       "category": "urbanas",
@@ -38,7 +38,7 @@
     },
     {
       "name": "",
-      "price": 0,
+      "price": 6000,
       "stock": 30,
       "description": "",
       "category": "",
