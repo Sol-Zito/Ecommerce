@@ -45,7 +45,6 @@ const CardProducts = ({ item, deleteProductByID, updateProductByID }) => {
                 >
                   Borrar
                 </Button>
-
                 <Button
                   size="small"
                   onClick={ () => {updateProductByID(item)}}

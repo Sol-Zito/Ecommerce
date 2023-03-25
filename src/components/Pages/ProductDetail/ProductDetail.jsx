@@ -1,10 +1,53 @@
+import { Card, CardContent, CardMedia, Typography } from "@mui/material";
 import React from "react";
 
 const ProductDetail = ({ product }) => {
   return (
     <div>
-      <h1>ProductDetail</h1>
-      <p>{product.description}</p>
+      <br />
+      <h1>Detalles del producto:</h1>
+      <br />
+      <div
+        style={{
+          border: " 2px solid",
+          display: "flex",
+          flexDirection: "row",
+          flexWrap: "wrap",
+          alignContent: "space-around",
+          justifyContent: "space-evenly",
+          alignItems: "center",
+          maxWidth: "400px",
+          margin: "auto",
+          gap: "6px",
+        }}
+      >
+        <Card key={product.name} sx={{ maxWidth: 400, maxHeight: 500 }}>
+          <CardContent>
+            <Typography gutterBottom variant="h5" component="div">
+              {product.name}
+            </Typography>
+            <CardMedia
+              sx={{ height: 200, width: 300 }}
+              image={product.img}
+              title={product.name}
+            />
+
+            <Typography variant="body2" color="text.secondary">
+              Stock: {product.stock}
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              Descripcion: {product.description}
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              Categoria: {product.category}
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              ${product.price}
+            </Typography>
+          </CardContent>
+        </Card>
+      </div>
+      <br />
     </div>
   );
 };
