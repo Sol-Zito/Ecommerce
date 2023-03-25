@@ -1,30 +1,66 @@
+import { Button, Card, CardActions, CardContent, CardMedia, Typography } from "@mui/material";
 import React from "react";
+import { Link } from "react-router-dom";
 
 const CardProducts = ({ item, deleteProductByID, updateProductByID }) => {
-  const { name, price, stock, description, img } = item;
 
   return (
-    <div>
-      <h2>{name}</h2>
-      <p> Precio: {price}</p>
-      <span>Stock: {stock}</span>
-      <p>Description: {description}</p>
-      <img src={img} style={{ width: "200px", height: "200px" }} />
-      <button
-        onClick={() => {
-          deleteProductByID(item.id);
-        }}
-      >
-        Borrar
-      </button>
-      <button
-        onClick={() => {
-          updateProductByID(item.id);
-        }}
-      >
-        Editar
-      </button>
-    </div>
+    <div
+            style={{
+              border: " 2px solid",
+              display: "flex",
+              flexDirection: "row",
+              flexWrap: "wrap",
+              alignContent: "space-around",
+              justifyContent: "space-evenly",
+              alignItems: "center",
+              maxWidth: "300px",
+              margin: "auto",
+            gap: "6px",
+            }}
+          >
+            <Card sx={{ maxWidth: 400, maxHeight: 500 }}>
+              <CardMedia
+                sx={{ height: 200, width: 300 }}
+                image={item.img}
+                title={item.name}
+              />
+              <CardContent>
+                <Typography gutterBottom variant="h5" component="div">
+                  {item.name}
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  ${item.price}
+                </Typography>
+                <Typography variant="body2" color="text.secondary" >
+                  {item.description}
+                </Typography>
+              </CardContent>
+              <CardActions>
+                <Button
+                  size="small"
+                  onClick={() => {
+                    deleteProductByID(item.id);
+                  }}
+                >
+                  Borrar
+                </Button>
+
+                <Button
+                  size="small"
+                  onClick={ () => {updateProductByID(item)}}
+                >
+                  Editar
+                </Button>
+
+                <Link to={`/productDetail/${item.id}`}>
+                  <Button>
+                    Ver detalle
+                  </Button>
+                </Link>
+              </CardActions>
+            </Card>
+          </div>
   );
 };
 

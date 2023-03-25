@@ -1,21 +1,28 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Home from "./components/Pages/Home/Home";
+import Layout from "./components/Layout/Layout";
+import Login from "./components/Login/Login";
+import ProductsContainer from "./components/Pages/products/ProductsContainer";
+import ProductDetailContainer from "./components/Pages/ProductDetail/ProductDetailContainer";
 import "./App.css";
-import CreateProduct from "./components/CreateProduct/CreateProduct";
-import Home from "./components/Home/Home";
-import ProductsContainer from "./components/products/ProductsContainer";
-
-
+import CardUpdate from "./components/common/Card/CardUpdate";
+import CreateProductContainer from "./components/Pages/CreateProduct/CreateProductContainer";
 
 function App() {
-
   return (
     <BrowserRouter>
       <Routes>
-      <Route path="/" element={<Home/>} />
-        <Route path="/login" element={<h1>Estoy en el login</h1>} />
+        <Route path="/" element={<Login/>} />
+
+        <Route element={<Layout />}>
+          <Route path="/home" element={<Home />} />
+          <Route path="/shop" element={<ProductsContainer />} />
+          <Route path="/create-product" element={<CreateProductContainer />} />
+          <Route path="/update-product/:id" element={<CardUpdate />} />
+          <Route path="/productDetail/:id" element={<ProductDetailContainer />} />
+        </Route>
+
         <Route path="/cart" element={<h1>Estoy en el cart</h1>} />
-        <Route path="/shop" element={<ProductsContainer/>} />
-        <Route path="/create-product" element={<CreateProduct/>}/>
         <Route path="*" element={<h1>Not found</h1>} />
       </Routes>
     </BrowserRouter>
