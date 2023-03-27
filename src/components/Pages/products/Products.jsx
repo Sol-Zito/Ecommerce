@@ -6,9 +6,12 @@ import CardProducts from "../../common/Card/CardProducts";
 const Products = ({ items, deleteProductByID, updateProductByID }) => {
   return (
     <>
+    <br/>
       <Link to="/create-product">
         <Button variant="outlined">Agregar nuevo producto</Button>
       </Link>
+    <br/>
+    
       <div
         style={{
           display: "flex",

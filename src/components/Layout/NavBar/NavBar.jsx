@@ -7,8 +7,8 @@ const NavBar = () => {
   return (
     <div className={style.btnContenedor}>
       <div style={{ display: "flex", gap: "2px" }}>
-        <NavLink to="/login">
-          <Button variant="contained">Ir al login</Button>
+        <NavLink to="/home">
+          <Button variant="contained">Ir a home</Button>
         </NavLink>
 
         <NavLink to="/shop">

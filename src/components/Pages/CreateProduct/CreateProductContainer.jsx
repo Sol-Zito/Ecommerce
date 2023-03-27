@@ -1,11 +1,9 @@
-
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { createNewProduct } from "../../../services/ProductServices";
-import CreateProduct from './CreateProduct'
+import CreateProduct from "./CreateProduct";
 
 const CreateProductContainer = () => {
-  
   const [newProduct, setNewProduct] = useState({
     name: "",
     price: 0,
@@ -14,7 +12,7 @@ const CreateProductContainer = () => {
     category: "",
     img: "",
   });
-  
+
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -33,22 +31,18 @@ const CreateProductContainer = () => {
       img: newProduct.img,
     };
 
-    const addProduct = createNewProduct(data)
+    const addProduct = createNewProduct(data);
     addProduct
-    .then((res) => console.log(res.data))
-    .catch((err) => console.log(err));
+      .then((res) => console.log(res.data))
+      .catch((err) => console.log(err));
 
     navigate("/shop");
   };
 
   return (
-    <div>
-       <CreateProduct
-        handleSubmit={handleSubmit}
-        handleChange={handleChange}
-      /> 
-      
-    </div>
+    <>
+      <CreateProduct handleSubmit={handleSubmit} handleChange={handleChange} />
+    </>
   );
 };
 

@@ -1,9 +1,11 @@
 import { Card, CardContent, CardMedia, Typography } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
+import CardUpdate from "../../common/Card/CardUpdate";
 
 const ProductDetail = ({ product }) => {
+  const [open, setOpen] = useState(false);
   return (
-    <div>
+    <>
       <br />
       <h1>Detalles del producto:</h1>
       <br />
@@ -21,7 +23,7 @@ const ProductDetail = ({ product }) => {
           gap: "6px",
         }}
       >
-        <Card key={product.name} sx={{ maxWidth: 400, maxHeight: 500 }}>
+        <Card  sx={{ maxWidth: 400, maxHeight: 500 }}>
           <CardContent>
             <Typography gutterBottom variant="h5" component="div">
               {product.name}
@@ -31,7 +33,6 @@ const ProductDetail = ({ product }) => {
               image={product.img}
               title={product.name}
             />
-
             <Typography variant="body2" color="text.secondary">
               Stock: {product.stock}
             </Typography>
@@ -48,7 +49,12 @@ const ProductDetail = ({ product }) => {
         </Card>
       </div>
       <br />
-    </div>
+      <button onClick={()=>setOpen(true)}>Modificar</button>
+      {
+        open &&
+      <CardUpdate key={product.id} updateProduct={product} setOpen={setOpen}/>
+      }
+    </>
   );
 };
 

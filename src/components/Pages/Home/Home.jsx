@@ -10,14 +10,14 @@ const Home = () => {
     navigate("/shop");
   };
   return (
-    <div>
+    <>
       <br></br>
       <h1>Bienvenido al home</h1>
       <br></br>
       <Button variant="contained" onClick={login} color="success">
         Ingresar
       </Button>
-    </div>
+    </>
   );
 };
 

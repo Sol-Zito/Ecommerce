@@ -16,9 +16,9 @@ const ProductDetailContainer = () => {
   }, []);
 
   return (
-    <div>
-      <ProductDetail product={product} />
-    </div>
+    <>
+      <ProductDetail  key={product.id} product={product} />
+    </>
   );
 };
 

@@ -6,11 +6,11 @@ import NavBar from "./NavBar/NavBar";
 
 const Layout = () => {
   return (
-    <div>
+    <>
       <NavBar />
       <Outlet />
       <Footer />
-    </div>
+    </>
   );
 };
 

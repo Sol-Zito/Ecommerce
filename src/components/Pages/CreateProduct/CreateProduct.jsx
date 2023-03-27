@@ -21,7 +21,7 @@ const CreateProduct = ({ handleSubmit, handleChange }) => {
   const handleClose = () => setOpen(false);
 
   return (
-    <div>
+    <>
       <Button onClick={handleOpen}>Open modal</Button>
       <Modal
         open={open}
@@ -30,80 +30,83 @@ const CreateProduct = ({ handleSubmit, handleChange }) => {
         aria-describedby="parent-modal-description"
       >
         <Box sx={{ ...style, width: 400 }}>
-        <form
-          action=""
-          onSubmit={handleSubmit}
-          style={{ display: "flex", flexDirection: "column", gap: "5px" }}
-        >
-          <Typography
-            id="modal-modal-title"
-            variant="h6"
-            component="h2"
-            color="primary"
+          <form
+            action=""
+            onSubmit={handleSubmit}
+            style={{ display: "flex", flexDirection: "column", gap: "5px" }}
           >
-            Complete los datos:
-          </Typography>
-          <TextField
-            id="name-product"
-            type="text"
-            name="name"
-            variant="outlined"
-            fullWidth
-            label="nombre del producto"
-            onChange={handleChange}
-          />
-          <TextField
-            id="price-product"
-            type="text"
-            name="price"
-            variant="outlined"
-            fullWidth
-            label="precio del producto"
-            onChange={handleChange}
-          />
-          <TextField
-            id="stock-product"
-            type="text"
-            name="stock"
-            variant="outlined"
-            fullWidth
-            label="stock del producto"
-            onChange={handleChange}
-          />
-           <TextField
-            id="description-product"
-            type="text"
-            name="description"
-            variant="outlined"
-            fullWidth
-            label="description del producto"
-            onChange={handleChange}
-          />
-          <TextField
-            id="category-product"
-            type="text"
-            name="category"
-            variant="outlined"
-            fullWidth
-            label="category del producto"
-            onChange={handleChange}
-          />
-          <TextField
-            id="img-product"
-            type="text"
-            name="img"
-            variant="outlined"
-            fullWidth
-            label="img del producto"
-            onChange={handleChange}
-          /> 
-          <Button type="submit" variant="contained">
-            Enviar
-          </Button>
-        </form>
-      </Box>
+            <Typography
+              id="modal-modal-title"
+              variant="h6"
+              component="h2"
+              color="primary"
+            >
+              Complete los datos:
+            </Typography>
+            <TextField
+              id="name-product"
+              type="text"
+              name="name"
+              variant="outlined"
+              fullWidth
+              label="nombre del producto"
+              onChange={handleChange}
+            />
+            <TextField
+              id="price-product"
+              type="text"
+              name="price"
+              variant="outlined"
+              fullWidth
+              label="precio del producto"
+              onChange={handleChange}
+            />
+            <TextField
+              id="stock-product"
+              type="text"
+              name="stock"
+              variant="outlined"
+              fullWidth
+              label="stock del producto"
+              onChange={handleChange}
+            />
+            <TextField
+              id="description-product"
+              type="text"
+              name="description"
+              variant="outlined"
+              fullWidth
+              label="description del producto"
+              onChange={handleChange}
+            />
+            <TextField
+              id="category-product"
+              type="text"
+              name="category"
+              variant="outlined"
+              fullWidth
+              label="category del producto"
+              onChange={handleChange}
+            />
+            <TextField
+              id="img-product"
+              type="text"
+              name="img"
+              variant="outlined"
+              fullWidth
+              label="img del producto"
+              onChange={handleChange}
+            />
+            <Button type="submit" variant="contained">
+              Enviar
+            </Button>
+            <Button type="button" variant="contained" onClick={handleClose}>
+              Cancelar
+            </Button>
+          </form>
+        </Box>
       </Modal>
-    </div>
+    </>
   );
 };
 

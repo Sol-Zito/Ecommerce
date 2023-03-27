@@ -1,12 +1,12 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./components/Pages/Home/Home";
 import Layout from "./components/Layout/Layout";
-import Login from "./components/Login/Login";
 import ProductsContainer from "./components/Pages/products/ProductsContainer";
 import ProductDetailContainer from "./components/Pages/ProductDetail/ProductDetailContainer";
 import "./App.css";
 import CardUpdate from "./components/common/Card/CardUpdate";
 import CreateProductContainer from "./components/Pages/CreateProduct/CreateProductContainer";
+import Login from "./Login/Login";
 
 function App() {
   return (

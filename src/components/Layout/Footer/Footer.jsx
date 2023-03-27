@@ -3,7 +3,7 @@ import TableFooter from "@mui/material/TableFooter";
 
 const Footer = () => {
   return (
-    <div>
+    <>
     <br/>
       <nav>
         <ul
@@ -36,7 +36,7 @@ const Footer = () => {
           <li>Ayuda</li>
         </ul>
       </nav>
-    </div>
+    </>
   );
 };
 

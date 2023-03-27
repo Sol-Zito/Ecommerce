@@ -1,5 +1,6 @@
 import { Box, Button, TextField, Typography } from "@mui/material";
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { updateProducts } from "../../../services/ProductServices";
 const style = {
   position: "absolute",
@@ -37,11 +38,10 @@ const CardUpdate = ({setOpen, updateProduct}) => {
 
     updateProducts( product.id, data);
     setOpen(false)
-
   };
 
   return (
-    <div>
+    <>
     <Box sx={{ ...style, width: 400 }}>
       <form
         action=""
@@ -62,7 +62,7 @@ const CardUpdate = ({setOpen, updateProduct}) => {
           name="name"
           variant="outlined"
           fullWidth
-          label={product.name}
+          label= {`Nombre: ${product.name}`}
           onChange={handleChange}
         />
         <TextField
@@ -71,7 +71,7 @@ const CardUpdate = ({setOpen, updateProduct}) => {
           name="price"
           variant="outlined"
           fullWidth
-          label={product.price}
+          label={`Precio: ${product.price}`}
           onChange={handleChange}
         />
         <TextField
@@ -80,7 +80,7 @@ const CardUpdate = ({setOpen, updateProduct}) => {
           name="stock"
           variant="outlined"
           fullWidth
-          label={product.stock}
+          label={`Stock: ${product.stock}`}
           onChange={handleChange}
         />
         <TextField
@@ -89,7 +89,7 @@ const CardUpdate = ({setOpen, updateProduct}) => {
           name="description"
           variant="outlined"
           fullWidth
-          label={product.description}
+          label={`Descripcion: ${product.description}`}
           onChange={handleChange}
         />
         <TextField
@@ -98,7 +98,7 @@ const CardUpdate = ({setOpen, updateProduct}) => {
           name="category"
           variant="outlined"
           fullWidth
-          label={product.category}
+          label={`Categoria: ${product.category}`}
           onChange={handleChange}
         />
         <TextField
@@ -107,7 +107,7 @@ const CardUpdate = ({setOpen, updateProduct}) => {
           name="img"
           variant="outlined"
           fullWidth
-          label="img del producto"
+          label="Imagen del producto"
           onChange={handleChange}
         />
         <Button type="submit" variant="contained">
@@ -119,7 +119,7 @@ const CardUpdate = ({setOpen, updateProduct}) => {
         </Button>
       </form>
       </Box>
-    </div>
+    </>
   );
 };
 
