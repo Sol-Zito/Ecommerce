@@ -9,6 +9,10 @@ import {
 import React from "react";
 import { Link } from "react-router-dom";
 
+import DeleteIcon from "@mui/icons-material/Delete";
+import ModeEditIcon from "@mui/icons-material/ModeEdit";
+import MoreIcon from "@mui/icons-material/More";
+
 const CardProducts = ({ item, deleteProductByID, updateProductByID }) => {
   return (
     <div
@@ -57,7 +61,7 @@ const CardProducts = ({ item, deleteProductByID, updateProductByID }) => {
               deleteProductByID(item.id);
             }}
           >
-            Borrar
+            <DeleteIcon />
           </Button>
           <Button
             size="small"
@@ -65,11 +69,12 @@ const CardProducts = ({ item, deleteProductByID, updateProductByID }) => {
               updateProductByID(item);
             }}
           >
-            Editar
+            <ModeEditIcon />
           </Button>
-
           <Link to={`/productDetail/${item.id}`}>
-            <Button>Ver detalle</Button>
+            <Button>
+              <MoreIcon />
+            </Button>
           </Link>
         </CardActions>
       </Card>

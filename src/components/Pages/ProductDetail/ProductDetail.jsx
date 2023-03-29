@@ -1,9 +1,9 @@
 import { Card, CardContent, CardMedia, Typography } from "@mui/material";
 import React, { useState } from "react";
 import CardUpdate from "../../common/Card/CardUpdate";
+import ItemCount from "../../common/ItemCount/ItemCount";
 
-const ProductDetail = ({ product }) => {
-  const [open, setOpen] = useState(false);
+const ProductDetail = ({ product, showForm, setShowForm, setIsUpdated }) => {
   return (
     <>
       <br />
@@ -23,7 +23,7 @@ const ProductDetail = ({ product }) => {
           gap: "6px",
         }}
       >
-        <Card  sx={{ maxWidth: 400, maxHeight: 500 }}>
+        <Card sx={{ maxWidth: 400, maxHeight: 500 }}>
           <CardContent>
             <Typography gutterBottom variant="h5" component="div">
               {product.name}
@@ -45,15 +45,20 @@ const ProductDetail = ({ product }) => {
             <Typography variant="body2" color="text.secondary">
               ${product.price}
             </Typography>
+            <ItemCount product={product} />
           </CardContent>
         </Card>
       </div>
       <br />
-      <button onClick={()=>setOpen(true)}>Modificar</button>
-      {
-        open &&
-      <CardUpdate key={product.id} updateProduct={product} setOpen={setOpen}/>
-      }
+      <button onClick={() => setShowForm(true)}>Modificar</button>
+      {showForm && (
+        <CardUpdate
+          key={product.id}
+          updateProduct={product}
+          setShowForm={setShowForm}
+          setIsUpdated={setIsUpdated}
+        />
+      )}
     </>
   );
 };

@@ -20,8 +20,8 @@
     },
     {
       "name": "EQ21 RUN",
-      "price": 27000,
-      "stock": 30,
+      "price": 30005,
+      "stock": "18",
       "description": "El exterior transpirable mantiene tus pies frescos mientras corrés largas distancias. La amortiguación liviana te da ese impulso que te anima a conquistar tu carrera desde la primera a la última zancada.",
       "category": "deportivas",
       "img": "https://assets.adidas.com/images/w_600,f_auto,q_auto/88f11feb5a654576bfebae2f002672b6_9366/Zapatillas_EQ21_Run_Negro_GY2207.jpg",

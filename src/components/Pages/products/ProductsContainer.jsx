@@ -1,8 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-  deleteProduct,
-  getProducts,
-} from "../../../services/ProductServices";
+import { deleteProduct, getProducts } from "../../../services/ProductServices";
 import CardUpdate from "../../common/Card/CardUpdate";
 import Products from "./Products";
 
@@ -10,42 +7,40 @@ const ProductsContainer = () => {
   const [items, setItems] = useState([]);
   const [isChange, setIsChange] = useState(false);
 
-  const [open, setOpen] = useState(false);
-  const  [ updateProduct, setUpdateProduct] = useState({})
+  const [showForm, setShowForm] = useState(false);
+  const [updateProduct, setUpdateProduct] = useState({});
 
   useEffect(() => {
     setIsChange(false);
-    setUpdateProduct({})
+    setUpdateProduct({});
 
     const productos = getProducts();
     productos
       .then((res) => setItems(res.data))
       .catch((err) => console.log(err));
-  }, [isChange, open]);
+  }, [isChange, showForm]);
 
   const deleteProductByID = (id) => {
     deleteProduct(id);
     setIsChange(true);
   };
 
-
   const updateProductByID = (item) => {
-    setUpdateProduct({...item})
-    setOpen(true)
+    setUpdateProduct({ ...item });
+    setShowForm(true);
   };
 
   return (
     <>
+      <Products
+        items={items}
+        deleteProductByID={deleteProductByID}
+        updateProductByID={updateProductByID}
+      />
 
-    <Products
-      items={items}
-      deleteProductByID={deleteProductByID}
-      updateProductByID={updateProductByID}
-    />
-
-    {
-      open && <CardUpdate updateProduct={updateProduct} setOpen={setOpen}/>
-    }    
+      {showForm && (
+        <CardUpdate updateProduct={updateProduct} setShowForm={setShowForm} />
+      )}
     </>
   );
 };

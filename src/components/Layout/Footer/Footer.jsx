@@ -1,10 +1,10 @@
 import React from "react";
-import TableFooter from "@mui/material/TableFooter";
+import { Stack } from "@mui/system";
+import { Button } from "@mui/material";
 
 const Footer = () => {
   return (
     <>
-    <br/>
       <nav>
         <ul
           style={{
@@ -24,16 +24,30 @@ const Footer = () => {
             paddingInlineStart: "40px",
           }}
         >
-          <li>Trabajá con nosotros</li>
-          <li>Términos y condiciones</li>
-          <li>Cómo cuidamos tu privacidad</li>
-
-          <li>Accesibilidad</li>
-          <li>Información al usuario financiero</li>
-
-          <li>Defensa del Consumidor</li>
-          <li>Información sobre seguros</li>
-          <li>Ayuda</li>
+          <li>
+            <Button>Trabajá con nosotros</Button>
+          </li>
+          <li>
+            <Button>Términos y condiciones</Button>
+          </li>
+          <li>
+            <Button>Cómo cuidamos tu privacidad</Button>
+          </li>
+          <li>
+            <Button>Accesibilidad</Button>
+          </li>
+          <li>
+            <Button>Información al usuario financiero</Button>
+          </li>
+          <li>
+            <Button>Defensa del Consumidor</Button>
+          </li>
+          <li>
+            <Button>Información sobre seguros</Button>
+          </li>
+          <li>
+            <Button>Ayuda</Button>
+          </li>
         </ul>
       </nav>
     </>
