@@ -1,11 +1,18 @@
 import { Card, CardContent, CardMedia, Typography } from "@mui/material";
-import React, { useState } from "react";
+import React from "react";
 import CardUpdate from "../../common/Card/CardUpdate";
 import ItemCount from "../../common/ItemCount/ItemCount";
 
-const ProductDetail = ({ product, showForm, setShowForm, setIsUpdated }) => {
+const ProductDetail = ({
+  product,
+  showForm,
+  setShowForm,
+  setIsUpdated,
+  handleSubmit,
+  handleChange,
+}) => {
   return (
-    <>
+    <div>
       <br />
       <h1>Detalles del producto:</h1>
       <br />
@@ -57,9 +64,11 @@ const ProductDetail = ({ product, showForm, setShowForm, setIsUpdated }) => {
           updateProduct={product}
           setShowForm={setShowForm}
           setIsUpdated={setIsUpdated}
+          handleSubmit={handleSubmit}
+          handleChange={handleChange}
         />
       )}
-    </>
+    </div>
   );
 };
 

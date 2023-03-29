@@ -9,8 +9,12 @@ const ItemCount = ({ product }) => {
   const onAdd = () => {
     let obj = {
       ...product,
+      stock: product.stock - count,
       quantity: count,
     };
+
+    console.log("product", product);
+    alert(`El producto: "${product.name}" fue agregado al carrito`);
 
     addToCart(obj);
   };

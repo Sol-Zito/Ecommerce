@@ -6,11 +6,11 @@ import CardProducts from "../../common/Card/CardProducts";
 const Products = ({ items, deleteProductByID, updateProductByID }) => {
   return (
     <>
-     <br></br>
+      <br></br>
       <Link to="/create-product">
         <Button variant="outlined">Agregar nuevo producto</Button>
       </Link>
-    
+
       <div
         style={{
           display: "flex",
@@ -22,7 +22,12 @@ const Products = ({ items, deleteProductByID, updateProductByID }) => {
         }}
       >
         {items.map((element) => (
-          <CardProducts key={element.id} item={element} deleteProductByID={deleteProductByID} updateProductByID={updateProductByID}/>
+          <CardProducts
+            key={element.id}
+            item={element}
+            deleteProductByID={deleteProductByID}
+            updateProductByID={updateProductByID}
+          />
         ))}
       </div>
     </>

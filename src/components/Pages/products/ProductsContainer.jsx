@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { deleteProduct, getProducts } from "../../../services/ProductServices";
+import {
+  deleteProduct,
+  getProducts,
+  updateProducts,
+} from "../../../services/ProductServices";
 import CardUpdate from "../../common/Card/CardUpdate";
 import Products from "./Products";
 
@@ -8,17 +12,20 @@ const ProductsContainer = () => {
   const [isChange, setIsChange] = useState(false);
 
   const [showForm, setShowForm] = useState(false);
+
   const [updateProduct, setUpdateProduct] = useState({});
+  const [isUpdated, setIsUpdated] = useState(false);
 
   useEffect(() => {
     setIsChange(false);
     setUpdateProduct({});
+    setIsUpdated(false);
 
     const productos = getProducts();
     productos
       .then((res) => setItems(res.data))
       .catch((err) => console.log(err));
-  }, [isChange, showForm]);
+  }, [isChange, isUpdated]);
 
   const deleteProductByID = (id) => {
     deleteProduct(id);
@@ -26,8 +33,30 @@ const ProductsContainer = () => {
   };
 
   const updateProductByID = (item) => {
-    setUpdateProduct({ ...item });
+    setUpdateProduct(item);
+    console.log(" producto en update", updateProduct);
     setShowForm(true);
+  };
+
+  const handleChange = (e) => {
+    setUpdateProduct({ ...updateProduct, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    let data = {
+      name: updateProduct.name,
+      price: Number(updateProduct.price),
+      stock: updateProduct.stock,
+      description: updateProduct.description,
+      category: updateProduct.category,
+      img: updateProduct.img,
+    };
+
+    setIsUpdated(true);
+    updateProducts(updateProduct.id, data);
+    setShowForm(false);
   };
 
   return (
@@ -39,7 +68,12 @@ const ProductsContainer = () => {
       />
 
       {showForm && (
-        <CardUpdate updateProduct={updateProduct} setShowForm={setShowForm} />
+        <CardUpdate
+          updateProduct={updateProduct}
+          setShowForm={setShowForm}
+          handleChange={handleChange}
+          handleSubmit={handleSubmit}
+        />
       )}
     </>
   );

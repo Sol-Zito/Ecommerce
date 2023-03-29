@@ -1,7 +1,5 @@
 import { Box, Button, TextField, Typography } from "@mui/material";
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { updateProducts } from "../../../services/ProductServices";
+import React from "react";
 const style = {
   position: "absolute",
   top: "50%",
@@ -16,28 +14,13 @@ const style = {
   pb: 3,
 };
 
-const CardUpdate = ({ setShowForm, updateProduct, setIsUpdated }) => {
-  const [product, setProduct] = useState(updateProduct);
-
-  const handleChange = (e) => {
-    setProduct({ ...product, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    let data = {
-      name: product.name,
-      price: Number(product.price),
-      stock: product.stock,
-      description: product.description,
-      category: product.category,
-      img: product.img,
-    };
-    setIsUpdated(true);
-    updateProducts(product.id, data);
-    setShowForm(false);
-  };
+const CardUpdate = ({
+  setShowForm,
+  updateProduct,
+  handleSubmit,
+  handleChange,
+}) => {
+  const { name, price, stock, description, category } = updateProduct;
 
   return (
     <>
@@ -61,52 +44,52 @@ const CardUpdate = ({ setShowForm, updateProduct, setIsUpdated }) => {
             Complete los datos:
           </Typography>
           <TextField
-            id="name-product"
+            id="name-updateProduct"
             type="text"
             name="name"
             variant="outlined"
             fullWidth
-            label={`Nombre: ${product.name}`}
+            label={`Nombre: ${name}`}
             onChange={handleChange}
           />
           <TextField
-            id="price-product"
+            id="price-updateProduct"
             type="text"
             name="price"
             variant="outlined"
             fullWidth
-            label={`Precio: ${product.price}`}
+            label={`Precio: ${price}`}
             onChange={handleChange}
           />
           <TextField
-            id="stock-product"
+            id="stock-updateProduct"
             type="text"
             name="stock"
             variant="outlined"
             fullWidth
-            label={`Stock: ${product.stock}`}
+            label={`Stock: ${stock}`}
             onChange={handleChange}
           />
           <TextField
-            id="description-product"
+            id="description-updateProduct"
             type="text"
             name="description"
             variant="outlined"
             fullWidth
-            label={`Descripcion: ${product.description}`}
+            label={`Descripcion: ${description}`}
             onChange={handleChange}
           />
           <TextField
-            id="category-product"
+            id="category-updateProduct"
             type="text"
             name="category"
             variant="outlined"
             fullWidth
-            label={`Categoria: ${product.category}`}
+            label={`Categoria: ${category}`}
             onChange={handleChange}
           />
           <TextField
-            id="img-product"
+            id="img-updateProduct"
             type="text"
             name="img"
             variant="outlined"
