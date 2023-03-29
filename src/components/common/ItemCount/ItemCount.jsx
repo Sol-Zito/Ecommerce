@@ -2,21 +2,37 @@ import { Button, Stack } from "@mui/material";
 import React, { useContext, useState } from "react";
 import { CartContext } from "../../../Context/CartContext";
 
-const ItemCount = ({ product }) => {
+const ItemCount = ({ product, addToCartModStock }) => {
   const [count, setCount] = useState(1);
   const { addToCart } = useContext(CartContext);
 
   const onAdd = () => {
-    let obj = {
-      ...product,
-      stock: product.stock - count,
-      quantity: count,
-    };
+    if (product.stock > 0) {
+      let obj = {
+        ...product,
+        stock: product.stock - count,
+        quantity: count,
+      };
 
-    console.log("product", product);
-    alert(`El producto: "${product.name}" fue agregado al carrito`);
+      addToCartModStock(count);
+      addToCart(obj);
+      alert(`El producto: "${product.name}" fue agregado al carrito`);
+      setCount(1);
+    } else {
+      alert(`No hay stock`);
+    }
+  };
 
-    addToCart(obj);
+  const restCount = () => {
+    if (count >= 2) {
+      setCount(count - 1);
+    }
+  };
+
+  const sumCount = () => {
+    if (product.stock > count) {
+      setCount(count + 1);
+    }
   };
 
   return (
@@ -31,9 +47,9 @@ const ItemCount = ({ product }) => {
       }}
     >
       <Stack direction="row" spacing={2}>
-        <Button onClick={() => setCount(count - 1)}>-</Button>
+        <Button onClick={restCount}>-</Button>
         <h3>{count}</h3>
-        <Button onClick={() => setCount(count + 1)}>+</Button>
+        <Button onClick={sumCount}>+</Button>
       </Stack>
       <Button onClick={onAdd}> Add to cart</Button>
     </div>

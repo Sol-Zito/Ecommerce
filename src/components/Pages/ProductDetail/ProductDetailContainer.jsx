@@ -11,18 +11,20 @@ const ProductDetailContainer = () => {
 
   const [showForm, setShowForm] = useState(false);
 
-  const [isUpdated, setIsUpdated] = useState(false); //
+  const [isUpdated, setIsUpdated] = useState(false);
+  const [modStock, setModStock] = useState(false);
 
   const { id } = useParams();
 
   useEffect(() => {
-    setIsUpdated(false); //
+    setIsUpdated(false);
+    setModStock(false);
 
     const products = getProductsById(id);
     products
       .then((res) => setProduct(res.data))
       .catch((err) => console.log(err));
-  }, [isUpdated]);
+  }, [isUpdated, modStock]);
 
   const handleChange = (e) => {
     setProduct({ ...product, [e.target.name]: e.target.value });
@@ -45,6 +47,20 @@ const ProductDetailContainer = () => {
     setShowForm(false);
   };
 
+  const addToCartModStock = (quantity) => {
+    let data = {
+      name: product.name,
+      price: Number(product.price),
+      stock: product.stock - quantity,
+      description: product.description,
+      category: product.category,
+      img: product.img,
+    };
+
+    updateProducts(product.id, data);
+    setModStock(true);
+  };
+
   return (
     <>
       <ProductDetail
@@ -55,6 +71,7 @@ const ProductDetailContainer = () => {
         setIsUpdated={setIsUpdated}
         handleChange={handleChange}
         handleSubmit={handleSubmit}
+        addToCartModStock={addToCartModStock}
       />
     </>
   );

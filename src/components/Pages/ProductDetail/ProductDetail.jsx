@@ -10,6 +10,7 @@ const ProductDetail = ({
   setIsUpdated,
   handleSubmit,
   handleChange,
+  addToCartModStock,
 }) => {
   return (
     <div>
@@ -52,7 +53,11 @@ const ProductDetail = ({
             <Typography variant="body2" color="text.secondary">
               ${product.price}
             </Typography>
-            <ItemCount product={product} />
+
+            <ItemCount
+              product={product}
+              addToCartModStock={addToCartModStock}
+            />
           </CardContent>
         </Card>
       </div>
