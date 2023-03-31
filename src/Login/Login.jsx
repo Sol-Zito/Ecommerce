@@ -6,8 +6,10 @@ const Login = () => {
   const navigate = useNavigate();
 
   const [user, setUser] = useState({
-    name: "",
-    email: "",
+    username: "",
+    userlastname: "",
+    useremail: "",
+    password: "",
   });
 
   const handleChange = (e) => {
@@ -16,7 +18,7 @@ const Login = () => {
 
   const handlesubmit = (e) => {
     e.preventDefault();
-    console.log('fue registrado');
+    console.log("fue registrado");
     navigate("/home");
   };
 
@@ -26,22 +28,39 @@ const Login = () => {
       <br></br>
       <form
         onSubmit={handlesubmit}
-        style={{ display: "flex", flexDirection: "column", gap: "5px" , backgroundColor:'ActiveBorder'}}
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "5px",
+          backgroundColor: "ActiveBorder",
+        }}
       >
         <TextField
           type="text"
           placeholder="Ingrese su nombre"
-          name="name"
+          name="username"
           onChange={handleChange}
         />
         <TextField
           type="text"
           placeholder="Ingrese su email"
-          name="email"
+          name="userlastname"
+          onChange={handleChange}
+        />
+        <TextField
+          type="text"
+          placeholder="Ingrese su email"
+          name="useremail"
+          onChange={handleChange}
+        />
+        <TextField
+          type="password"
+          placeholder="Ingrese su email"
+          name="password"
           onChange={handleChange}
         />
 
-        <Button type='submit' variant="contained" color="success">
+        <Button type="submit" variant="contained" color="success">
           Ingresar
         </Button>
       </form>

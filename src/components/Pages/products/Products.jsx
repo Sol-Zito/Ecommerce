@@ -6,9 +6,10 @@ import CardProducts from "../../common/Card/CardProducts";
 const Products = ({ items, deleteProductByID, updateProductByID }) => {
   return (
     <>
-      <br></br>
       <Link to="/create-product">
-        <Button variant="outlined">Agregar nuevo producto</Button>
+        <Button variant="outlined" sx={{ margin: "1rem" }}>
+          Agregar nuevo producto
+        </Button>
       </Link>
 
       <div

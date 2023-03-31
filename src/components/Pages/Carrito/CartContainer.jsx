@@ -6,26 +6,35 @@ import {
   Typography,
 } from "@mui/material";
 import React, { useContext } from "react";
-import { CartContext } from "../../../Context/CartContext";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { CartContexReducer } from "../../../Context/CartContextReducer";
+import { useEffect } from "react";
 
 const CartContainer = () => {
-  const { cart, clearCart, deleteProduct, getTotalPrice } =
-    useContext(CartContext);
+  const { state, dispatch } = useContext(CartContexReducer);
+  console.log(state.cart);
+
+  useEffect(() => {
+    dispatch({ type: "GET_TOTAL_PRICE" });
+  }, [state.cart]);
 
   return (
     <div>
       <h1>Estoy en el cart</h1>
-      <h2>Productos: {cart.length}</h2>
-      <h3>Total: {getTotalPrice}</h3>
-      {/* todavia no funciona el getTotalPrice */}
+      <h2>Productos: {state.totalQuantity}</h2>
+      <h3>Total: {state.totalPrice} </h3>
 
-      <Button onClick={() => clearCart()}>
+      <Button
+        variant="contained"
+        onClick={() => dispatch({ type: "CLEAR_CART" })}
+      >
         <DeleteIcon />
         Vaciar Carrito
       </Button>
 
-      {cart.map((objeto) => {
+      <Button variant="contained">Finalizar compra</Button>
+
+      {state.cart.map((objeto) => {
         return (
           <Card key={objeto.id} sx={{ maxWidth: 200, maxHeight: 300 }}>
             <CardContent>
@@ -42,9 +51,12 @@ const CartContainer = () => {
               </Typography>
               <Typography variant="body2" color="text.secondary">
                 Cantidad: {objeto.quantity ? `${objeto.quantity}` : "0"}
-                {/* algo se rompe al agregar mas de 1 */}
               </Typography>
-              <Button onClick={() => deleteProduct(objeto.id)}>
+              <Button
+                onClick={() =>
+                  dispatch({ type: "REMOVE_PRODUCT", payload: objeto.id })
+                }
+              >
                 <DeleteIcon />
               </Button>
             </CardContent>

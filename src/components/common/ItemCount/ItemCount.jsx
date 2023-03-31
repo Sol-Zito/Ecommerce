@@ -1,10 +1,10 @@
 import { Button, Stack } from "@mui/material";
 import React, { useContext, useState } from "react";
-import { CartContext } from "../../../Context/CartContext";
+import { CartContexReducer } from "../../../Context/CartContextReducer";
 
 const ItemCount = ({ product, addToCartModStock }) => {
   const [count, setCount] = useState(1);
-  const { addToCart } = useContext(CartContext);
+  const { dispatch } = useContext(CartContexReducer);
 
   const onAdd = () => {
     if (product.stock > 0) {
@@ -15,7 +15,9 @@ const ItemCount = ({ product, addToCartModStock }) => {
       };
 
       addToCartModStock(count);
-      addToCart(obj);
+
+      dispatch({ type: "ADD_TO_CART", payload: obj });
+
       alert(`El producto: "${product.name}" fue agregado al carrito`);
       setCount(1);
     } else {

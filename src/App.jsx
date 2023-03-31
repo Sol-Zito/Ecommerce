@@ -8,10 +8,10 @@ import CardUpdate from "./components/common/Card/CardUpdate";
 import CreateProductContainer from "./components/Pages/CreateProduct/CreateProductContainer";
 import Login from "./Login/Login";
 import { useMemo, useState } from "react";
-import Cart from "./components/Pages/Carrito/Cart";
 import ThemeContext, { themes } from "./Context/Themes";
-import CartContextProvider from "./Context/CartContext";
 import CartContainer from "./components/Pages/Carrito/CartContainer";
+import CartContexReducerProvider from "./Context/CartContextReducer";
+import UserContextProvider from "./Context/UserContext/UserContext";
 
 function App() {
   const [theme, setTheme] = useState(themes.light);
@@ -28,26 +28,28 @@ function App() {
   return (
     <BrowserRouter>
       <ThemeContext.Provider value={providerValue}>
-        <CartContextProvider>
-          <Routes>
-            <Route path="/" element={<Login />} />
-            <Route element={<Layout />}>
-              <Route path="/home" element={<Home />} />
-              <Route path="/shop" element={<ProductsContainer />} />
-              <Route
-                path="/create-product"
-                element={<CreateProductContainer />}
-              />
-              <Route path="/update-product/:id" element={<CardUpdate />} />
-              <Route
-                path="/productDetail/:id"
-                element={<ProductDetailContainer />}
-              />
-              <Route path="/cart" element={<CartContainer />} />
-            </Route>
-            <Route path="*" element={<h1>Not found</h1>} />
-          </Routes>
-        </CartContextProvider>
+        <CartContexReducerProvider>
+          <UserContextProvider>
+            <Routes>
+              <Route path="/" element={<Login />} />
+              <Route element={<Layout />}>
+                <Route path="/home" element={<Home />} />
+                <Route path="/shop" element={<ProductsContainer />} />
+                <Route
+                  path="/create-product"
+                  element={<CreateProductContainer />}
+                />
+                <Route path="/update-product/:id" element={<CardUpdate />} />
+                <Route
+                  path="/productDetail/:id"
+                  element={<ProductDetailContainer />}
+                />
+                <Route path="/cart" element={<CartContainer />} />
+              </Route>
+              <Route path="*" element={<h1>Not found</h1>} />
+            </Routes>
+          </UserContextProvider>
+        </CartContexReducerProvider>
       </ThemeContext.Provider>
     </BrowserRouter>
   );

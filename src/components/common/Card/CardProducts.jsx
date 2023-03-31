@@ -24,8 +24,8 @@ const CardProducts = ({ item, deleteProductByID, updateProductByID }) => {
         alignContent: "space-around",
         justifyContent: "space-evenly",
         alignItems: "center",
-        width: "350px",
-        height: "400px",
+        width: "auto",
+        height: "auto",
         margin: "auto",
         gap: "6px",
       }}

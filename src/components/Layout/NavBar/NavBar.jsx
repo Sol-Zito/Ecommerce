@@ -1,12 +1,12 @@
-import { Avatar, Button, Stack, SvgIcon } from "@mui/material";
-import React, { useContext } from "react";
+import { Button, Stack, SvgIcon } from "@mui/material";
+import React, { useContext, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import style from "./Home.module.css";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import AddBusinessIcon from "@mui/icons-material/AddBusiness";
 import Brightness6Icon from "@mui/icons-material/Brightness6";
 import ThemeContext from "../../../Context/Themes";
-import { CartContext } from "../../../Context/CartContext";
+import { CartContexReducer } from "../../../Context/CartContextReducer";
 function HomeIcon(props) {
   return (
     <SvgIcon {...props}>
@@ -18,7 +18,11 @@ function HomeIcon(props) {
 const NavBar = () => {
   const { theme, handleChangeTheme } = useContext(ThemeContext);
 
-  const { cart } = useContext(CartContext);
+  const { state, dispatch } = useContext(CartContexReducer);
+
+  useEffect(() => {
+    dispatch({ type: "GET_TOTAL_QUANTITY" });
+  }, [state.cart]);
 
   return (
     <div className={style.btnContenedor}>
@@ -50,7 +54,7 @@ const NavBar = () => {
           <Brightness6Icon />
         </Button>
       </Stack>
-      <h3>Carrito: {cart.length} </h3>
+      <h3>Carrito: {state.totalQuantity} </h3>
     </div>
   );
 };
