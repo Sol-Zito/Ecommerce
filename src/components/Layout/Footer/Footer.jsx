@@ -1,6 +1,7 @@
 import React from "react";
 import { Stack } from "@mui/system";
 import { Button } from "@mui/material";
+import { Outlet } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -50,6 +51,7 @@ const Footer = () => {
           </li>
         </ul>
       </nav>
+      <Outlet />
     </>
   );
 };

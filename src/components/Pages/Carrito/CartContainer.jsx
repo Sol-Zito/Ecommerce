@@ -3,31 +3,58 @@ import {
   Card,
   CardContent,
   CardMedia,
+  CssBaseline,
   Typography,
 } from "@mui/material";
 import React, { useContext } from "react";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { CartContexReducer } from "../../../Context/CartContextReducer";
 import { useEffect } from "react";
+import Swal from "sweetalert2";
 
 const CartContainer = () => {
   const { state, dispatch } = useContext(CartContexReducer);
-  console.log(state.cart);
 
   useEffect(() => {
     dispatch({ type: "GET_TOTAL_PRICE" });
   }, [state.cart]);
 
+  const clearCarrito = () => {
+    if (state.totalQuantity > 0) {
+      Swal.fire({
+        title: "Quiere vaciar el carrito?",
+        showDenyButton: true,
+        showCancelButton: true,
+        confirmButtonText: "Si, seguro",
+        denyButtonText: `No, me arrepiento`,
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire("Carrito vaciado con exito!", "", "success");
+          dispatch({ type: "CLEAR_CART" });
+        } else if (result.isDenied) {
+          Swal.fire("El carrito queda como esta", "", "info");
+        }
+      });
+    } else {
+      Swal.fire("Aun no se han agregado productos");
+    }
+  };
+
   return (
     <div>
+      <CssBaseline />
+      <br />
       <h1>Estoy en el cart</h1>
-      <h2>Productos: {state.totalQuantity}</h2>
-      <h3>Total: {state.totalPrice} </h3>
+      <br />
+      {/* <h2>Productos: {state.totalQuantity}</h2> */}
+      {state.totalPrice > 0 ? (
+        <h3>Total: ${state.totalPrice} </h3>
+      ) : (
+        <h3>Totavia no se han agregado productos</h3>
+      )}
 
-      <Button
-        variant="contained"
-        onClick={() => dispatch({ type: "CLEAR_CART" })}
-      >
+      <br />
+      <Button variant="contained" onClick={() => clearCarrito()}>
         <DeleteIcon />
         Vaciar Carrito
       </Button>
@@ -36,7 +63,10 @@ const CartContainer = () => {
 
       {state.cart.map((objeto) => {
         return (
-          <Card key={objeto.id} sx={{ maxWidth: 200, maxHeight: 300 }}>
+          <Card
+            key={objeto.id}
+            sx={{ maxWidth: 200, maxHeight: 300, margin: "auto" }}
+          >
             <CardContent>
               <Typography gutterBottom variant="h5" component="div">
                 {objeto.name}

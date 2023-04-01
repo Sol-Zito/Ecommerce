@@ -12,6 +12,8 @@ import ThemeContext, { themes } from "./Context/Themes";
 import CartContainer from "./components/Pages/Carrito/CartContainer";
 import CartContexReducerProvider from "./Context/CartContextReducer";
 import UserContextProvider from "./Context/UserContext/UserContext";
+import NavbarMaterial from "./components/Layout/NavbarMaterial/NavbarMaterial";
+import LoginUser from "./Login/LoginUser";
 
 function App() {
   const [theme, setTheme] = useState(themes.light);
@@ -31,8 +33,10 @@ function App() {
         <CartContexReducerProvider>
           <UserContextProvider>
             <Routes>
-              <Route path="/" element={<Login />} />
-              <Route element={<Layout />}>
+              {/* <Route path="/" element={<Login />} /> */}
+              <Route path="/" element={<LoginUser />} />
+              {/* <Route element={<Layout />}> */}
+              <Route element={<NavbarMaterial />}>
                 <Route path="/home" element={<Home />} />
                 <Route path="/shop" element={<ProductsContainer />} />
                 <Route
@@ -46,6 +50,7 @@ function App() {
                 />
                 <Route path="/cart" element={<CartContainer />} />
               </Route>
+              {/* </Route> */}
               <Route path="*" element={<h1>Not found</h1>} />
             </Routes>
           </UserContextProvider>

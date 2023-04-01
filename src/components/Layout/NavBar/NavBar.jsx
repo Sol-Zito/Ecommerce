@@ -42,7 +42,7 @@ const NavBar = () => {
         <NavLink to="/cart">
           <Button variant="contained">
             {" "}
-            <AddShoppingCartIcon />{" "}
+            <AddShoppingCartIcon /> <h3>Carrito: {state.totalQuantity} </h3>
           </Button>
         </NavLink>
 
@@ -54,7 +54,6 @@ const NavBar = () => {
           <Brightness6Icon />
         </Button>
       </Stack>
-      <h3>Carrito: {state.totalQuantity} </h3>
     </div>
   );
 };
