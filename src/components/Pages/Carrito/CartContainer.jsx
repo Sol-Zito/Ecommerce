@@ -11,6 +11,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { CartContexReducer } from "../../../Context/CartContextReducer";
 import { useEffect } from "react";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 const CartContainer = () => {
   const { state, dispatch } = useContext(CartContexReducer);
@@ -58,8 +59,9 @@ const CartContainer = () => {
         <DeleteIcon />
         Vaciar Carrito
       </Button>
-
-      <Button variant="contained">Finalizar compra</Button>
+      <Link to="/cart/checkOut">
+        <Button variant="contained">Finalizar compra</Button>
+      </Link>
 
       {state.cart.map((objeto) => {
         return (

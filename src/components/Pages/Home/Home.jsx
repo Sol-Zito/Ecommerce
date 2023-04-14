@@ -1,26 +1,25 @@
 import { Button } from "@mui/material";
-import axios from "axios";
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { UserContext } from "../../../Context/UserContext/UserContext";
+import { ThemeContext } from "../../../Context/Themes";
+import "./home.css";
 
 const Home = () => {
+  const { state } = useContext(ThemeContext);
   const navigate = useNavigate();
 
   const loginFunction = () => {
     console.log("ya termine el proceso");
     navigate("/shop");
   };
-  return (
-    <>
-      <br></br>
-      <h1>Bienvenido al home</h1>
 
-      <br></br>
+  return (
+    <div className={`${state.theme} div-container`}>
+      <h1>Bienvenido al home</h1>
       <Button variant="contained" onClick={loginFunction} color="success">
         Ingresar
       </Button>
-    </>
+    </div>
   );
 };
 

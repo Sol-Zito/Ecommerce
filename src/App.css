@@ -1,7 +1,7 @@
 #root {
-  /* max-width: 2080px; */
   margin: 0;
   padding: 2px;
+  width: 100%;
   text-align: center;
   background-color: rgb(40, 34, 34);
   color: antiquewhite;

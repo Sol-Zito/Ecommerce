@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -16,10 +16,13 @@ import { Outlet, useNavigate } from "react-router-dom";
 import HomeIcon from "@mui/icons-material/Home";
 import StoreMallDirectoryIcon from "@mui/icons-material/StoreMallDirectory";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import { ThemeContext } from "../../../Context/Themes";
+import DarkModeIcon from "@mui/icons-material/DarkMode";
 
 const drawerWidth = 200;
 
 const NavbarMaterial = (props) => {
+  const { dispatch } = useContext(ThemeContext);
   const { window } = props;
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -28,8 +31,9 @@ const NavbarMaterial = (props) => {
   };
 
   const navigate = useNavigate();
+
   const drawer = (
-    <div>
+    <>
       <Toolbar />
       <Box
         display={"flex"}
@@ -41,6 +45,14 @@ const NavbarMaterial = (props) => {
         <Avatar alt="Remy Sharp" src={"sadsa"} />
       </Box>
       <List>
+        <ListItem disablePadding>
+          <ListItemButton onClick={() => dispatch({ type: "CHANGE_MOD" })}>
+            <ListItemIcon>
+              <DarkModeIcon />
+            </ListItemIcon>
+            <ListItemText primary={"ChangeMod"} sx={{ color: "black" }} />
+          </ListItemButton>
+        </ListItem>
         <ListItem disablePadding>
           <ListItemButton onClick={() => navigate("/home")}>
             <ListItemIcon>
@@ -66,8 +78,9 @@ const NavbarMaterial = (props) => {
           </ListItemButton>
         </ListItem>
       </List>
-    </div>
+    </>
   );
+
   const container =
     window !== undefined ? () => window().document.body : undefined;
 
@@ -148,7 +161,6 @@ const NavbarMaterial = (props) => {
           py: 4,
           width: { sm: `calc(100% - ${drawerWidth}px)` },
           minHeight: "100vh",
-          // marginBottom: "50px"
         }}
       >
         <Toolbar />
