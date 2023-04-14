@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import {
   deleteProduct,
-  getProducts,
   updateProducts,
 } from "../../../services/ProductServices";
 import CardUpdate from "../../common/Card/CardUpdate";
@@ -23,21 +22,22 @@ const ProductsContainer = () => {
     setUpdateProduct({});
     setIsUpdated(false);
 
-    // let refCollection = collection(db, "products");
-    // getDocs(refCollection).then((res) => {
-    //   const products = res.docs.map((product) => {
-    //     console.log(product);
-    //     // return {
-    //     //   ...product.data(),
-    //     //   id: product.id,
-    //     // };
-    //   });
-    // });
+    let refCollection = collection(db, "products");
+    getDocs(refCollection).then((res) => {
+      const products = res.docs.map((product) => {
+        return {
+          ...product.data(),
+          id: product.id,
+        };
+      });
 
-    const productos = getProducts();
-    productos
-      .then((res) => setItems(res.data))
-      .catch((err) => console.log(err));
+      setItems(products);
+    });
+
+    // const productos = getProducts();
+    // productos
+    //   .then((res) => setItems(res.data))
+    //   .catch((err) => console.log(err));
   }, [isChange, isUpdated]);
 
   const deleteProductByID = (id) => {

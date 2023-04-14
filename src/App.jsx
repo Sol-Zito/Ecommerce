@@ -19,9 +19,7 @@ function App() {
       <ThemeContextProvider>
         <CartContexReducerProvider>
           <Routes>
-            {/* <Route path="/" element={<Login />} /> */}
             <Route path="/" element={<LoginUser />} />
-            {/* <Route element={<Layout />}> */}
             <Route element={<NavbarMaterial />}>
               <Route path="/home" element={<Home />} />
               <Route path="/shop" element={<ProductsContainer />} />
@@ -37,7 +35,6 @@ function App() {
               <Route path="/cart" element={<CartContainer />} />
               <Route path="/cart/checkOut" element={<CheckOut />} />
             </Route>
-            {/* </Route> */}
             <Route path="*" element={<h1>Not found</h1>} />
           </Routes>
         </CartContexReducerProvider>
