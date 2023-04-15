@@ -1,4 +1,10 @@
-import { Card, CardContent, CardMedia, Typography } from "@mui/material";
+import {
+  Button,
+  Card,
+  CardContent,
+  CardMedia,
+  Typography,
+} from "@mui/material";
 import React from "react";
 import CardUpdate from "../../common/Card/CardUpdate";
 import ItemCount from "../../common/ItemCount/ItemCount";
@@ -62,7 +68,7 @@ const ProductDetail = ({
         </Card>
       </div>
       <br />
-      <button onClick={() => setShowForm(true)}>Modificar</button>
+      <Button onClick={() => setShowForm(true)}>Modificar</Button>
       {showForm && (
         <CardUpdate
           key={product.id}

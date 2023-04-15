@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import {
   deleteProduct,
+  getProducts,
   updateProducts,
 } from "../../../services/ProductServices";
 import CardUpdate from "../../common/Card/CardUpdate";
 import Products from "./Products";
-import { db } from "../../../firebaseConfig";
-import { getDocs, collection } from "firebase/firestore";
+//import { db } from "../../../firebaseConfig";
+//import { getDocs, collection } from "firebase/firestore";
 
 const ProductsContainer = () => {
   const [items, setItems] = useState([]);
@@ -22,22 +23,26 @@ const ProductsContainer = () => {
     setUpdateProduct({});
     setIsUpdated(false);
 
-    let refCollection = collection(db, "products");
-    getDocs(refCollection).then((res) => {
-      const products = res.docs.map((product) => {
-        return {
-          ...product.data(),
-          id: product.id,
-        };
-      });
+    //firebase
+    // let refCollection = collection(db, "products");
+    // console.log("refCollection", refCollection);
+    // getDocs(refCollection).then((res) => {
+    //   console.log("res.docs", res.docs);
+    //   // const products = res.docs.map((product) => {
+    //   //   console.log(product);
+    //   //   return {
+    //   //     ...product.data(),
+    //   //     id: product.id,
+    //   //   };
+    //   // });
 
-      setItems(products);
-    });
+    //   // setItems(products);
+    // });
 
-    // const productos = getProducts();
-    // productos
-    //   .then((res) => setItems(res.data))
-    //   .catch((err) => console.log(err));
+    const productos = getProducts();
+    productos
+      .then((res) => setItems(res.data))
+      .catch((err) => console.log(err));
   }, [isChange, isUpdated]);
 
   const deleteProductByID = (id) => {

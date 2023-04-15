@@ -34,12 +34,15 @@ const ProductDetailContainer = () => {
     e.preventDefault();
 
     let data = {
-      name: product.name,
+      // name: product.name,
+      // price: Number(product.price),
+      // stock: product.stock,
+      // description: product.description,
+      // category: product.category,
+      // img: product.img,
+      ...product,
       price: Number(product.price),
-      stock: product.stock,
-      description: product.description,
-      category: product.category,
-      img: product.img,
+      stock: Number(product.stock),
     };
 
     setIsUpdated(true);
