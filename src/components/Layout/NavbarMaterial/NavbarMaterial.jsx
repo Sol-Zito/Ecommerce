@@ -22,7 +22,7 @@ import DarkModeIcon from "@mui/icons-material/DarkMode";
 const drawerWidth = 200;
 
 const NavbarMaterial = (props) => {
-  const { dispatch } = useContext(ThemeContext);
+  const { state, dispatch } = useContext(ThemeContext);
   const { window } = props;
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -85,7 +85,7 @@ const NavbarMaterial = (props) => {
     window !== undefined ? () => window().document.body : undefined;
 
   return (
-    <Box sx={{ display: "flex" }}>
+    <Box sx={{ display: "flex" }} className={state.theme}>
       <CssBaseline />
       <AppBar
         position="fixed"
