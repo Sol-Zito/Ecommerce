@@ -1,17 +1,8 @@
-import {
-  Button,
-  Card,
-  CardContent,
-  CardMedia,
-  CssBaseline,
-  Typography,
-} from "@mui/material";
 import React, { useContext } from "react";
-import DeleteIcon from "@mui/icons-material/Delete";
 import { CartContexReducer } from "../../../Context/CartContextReducer";
 import { useEffect } from "react";
 import Swal from "sweetalert2";
-import { Link } from "react-router-dom";
+import Cart from "./Cart";
 
 const CartContainer = () => {
   const { state, dispatch } = useContext(CartContexReducer);
@@ -21,18 +12,19 @@ const CartContainer = () => {
   }, [state.cart]);
 
   const clearCarrito = () => {
-    if (state.totalQuantity > 0) {
+    if (state.cart.length > 0) {
       Swal.fire({
         title: "Quiere vaciar el carrito?",
-        showDenyButton: true,
+        icon: "warning",
         showCancelButton: true,
-        confirmButtonText: "Si, seguro",
-        denyButtonText: `No, me arrepiento`,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!",
       }).then((result) => {
         if (result.isConfirmed) {
           Swal.fire("Carrito vaciado con exito!", "", "success");
           dispatch({ type: "CLEAR_CART" });
-        } else if (result.isDenied) {
+        } else {
           Swal.fire("El carrito queda como esta", "", "info");
         }
       });
@@ -41,61 +33,30 @@ const CartContainer = () => {
     }
   };
 
+  const removeProduct = (id) => {
+    Swal.fire({
+      title: "Quiere eliminar el producto?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire("Producto eliminado con exito!", "", "success");
+        dispatch({ type: "REMOVE_PRODUCT", payload: id });
+      } else {
+        Swal.fire("El carrito queda como esta", "", "info");
+      }
+    });
+  };
+
   return (
-    <div>
-      <CssBaseline />
-      <br />
-      <h1>Estoy en el cart</h1>
-      <br />
-      {/* <h2>Productos: {state.totalQuantity}</h2> */}
-      {state.totalPrice > 0 ? (
-        <h3>Total: ${state.totalPrice} </h3>
-      ) : (
-        <h3>Totavia no se han agregado productos</h3>
-      )}
-
-      <br />
-      <Button variant="contained" onClick={() => clearCarrito()}>
-        <DeleteIcon />
-        Vaciar Carrito
-      </Button>
-      <Link to="/cart/checkOut">
-        <Button variant="contained">Finalizar compra</Button>
-      </Link>
-
-      {state.cart.map((objeto) => {
-        return (
-          <Card
-            key={objeto.id}
-            sx={{ maxWidth: 200, maxHeight: 300, margin: "auto" }}
-          >
-            <CardContent>
-              <Typography gutterBottom variant="h5" component="div">
-                {objeto.name}
-              </Typography>
-              <CardMedia
-                sx={{ height: 100, width: 150 }}
-                image={objeto.img}
-                title={objeto.name}
-              />
-              <Typography variant="body2" color="text.secondary">
-                ${objeto.price}
-              </Typography>
-              <Typography variant="body2" color="text.secondary">
-                Cantidad: {objeto.quantity ? `${objeto.quantity}` : "0"}
-              </Typography>
-              <Button
-                onClick={() =>
-                  dispatch({ type: "REMOVE_PRODUCT", payload: objeto.id })
-                }
-              >
-                <DeleteIcon />
-              </Button>
-            </CardContent>
-          </Card>
-        );
-      })}
-    </div>
+    <Cart
+      state={state}
+      clearCarrito={clearCarrito}
+      removeProduct={removeProduct}
+    />
   );
 };
 

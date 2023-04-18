@@ -2,8 +2,18 @@ import React, { createContext, useReducer } from "react";
 
 export const CartContexReducer = createContext();
 
+const getCartStorage = () => {
+  let localData = localStorage.getItem("cart");
+  return localData ? JSON.parse(localData) : [];
+};
+const addProductToCartStorage = (obj) => {
+  let arr = getCartStorage();
+  arr.push(obj);
+  return localStorage.setItem("cart", JSON.stringify(arr));
+};
+
 const initialState = {
-  cart: [],
+  cart: getCartStorage(),
   totalPrice: 0,
   totalQuantity: 0,
 };
@@ -25,12 +35,14 @@ function cartReducer(state, action) {
             return element;
           }
         });
-        return { ...state, cart: newArr };
+        localStorage.setItem("cart", JSON.stringify(newArr));
       } else {
-        return { ...state, cart: [...state.cart, action.payload] };
+        addProductToCartStorage(action.payload);
       }
+      return { ...state, cart: getCartStorage() };
     case "CLEAR_CART":
-      return { ...state, cart: [] };
+      localStorage.setItem("cart", []);
+      return { ...state, cart: getCartStorage() };
     case "GET_TOTAL_PRICE":
       let total = state.cart.reduce(
         (acc, elemento) => acc + elemento.price * elemento.quantity,
@@ -48,7 +60,8 @@ function cartReducer(state, action) {
       let newCart = state.cart.filter(
         (elemento) => elemento.id !== action.payload
       );
-      return { ...state, cart: newCart };
+      localStorage.setItem("cart", JSON.stringify(newCart));
+      return { ...state, cart: getCartStorage() };
     default:
       return state;
   }
