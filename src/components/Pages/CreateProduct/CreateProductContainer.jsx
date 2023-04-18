@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { createNewProduct } from "../../../services/ProductServices";
 import CreateProduct from "./CreateProduct";
+import { Button } from "@mui/material";
 
 const CreateProductContainer = () => {
   const [newProduct, setNewProduct] = useState({
@@ -39,9 +40,15 @@ const CreateProductContainer = () => {
     navigate("/shop");
   };
 
+  const handleClose = () => navigate("/shop");
+
   return (
     <>
-      <CreateProduct handleSubmit={handleSubmit} handleChange={handleChange} />
+      <CreateProduct
+        handleSubmit={handleSubmit}
+        handleChange={handleChange}
+        handleClose={handleClose}
+      />
     </>
   );
 };
